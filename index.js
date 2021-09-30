@@ -4,7 +4,7 @@ function Transducer(functions) {
   return function (item) {
     let result = null;
 
-    for (const f in functions) {
+    for (let f in functions) {
       result = f === 0 ? functions[f](item) : functions[f](result);
       console.log(result);
     }
