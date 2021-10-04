@@ -1,16 +1,18 @@
-const myTransducer = Transducer([(item) => item + 1, (item) => item * 5]);
+const myTransducer = Transducer([(item) => item + 'a', (item) => item + 'b']);
 
 function Transducer(functions) {
-  return function (item) {
-    let result = null;
+  let i = 0;
+  return function fn(item) {
+    let result = item;
 
-    for (let f in functions) {
-      result = f === 0 ? functions[f](item) : functions[f](result);
-      console.log(result);
+    for (let f = 0; f < functions.length; f++) {
+      result = functions[f](result);
+      console.log('i', ++i);
     }
-
+    console.log(result);
     return result;
   };
 }
+const arr = [1, 2, 3, 4, 5];
 
-console.log([1, 2, 3, 4, 5].map(myTransducer));
+console.log(arr.map(myTransducer));
